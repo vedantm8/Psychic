@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>A Somehow functional game</title>
+</head>
+<body>
+    <div id = "cholce"></div>
+    <div id = "wlns"></div>
+    <div id = "lossesl"></div>
+    <div id= "tles"></div>
+    <script>
+        //This initilizes all of the variables I can think of that'll be clearly displayed on the page itself.
+        var wins = 0;
+        var ties = 0;
+        var losses = 0;
+        var tries = 5;
+
+        //This array 'computerGuess' is contains all of the keys. I'm 100% sure that there is an easier way to complete this. 
+        var computerString = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
+        
+            //This will randomize the computers guess based on what the letters are above
+            var computerGuess = computerString[Math.floor(Math.random() * computerString.length)];
+
+        //This function will occur when a specific key is pressed by user input. The toLowerCase will force any capitalized letters. 
+        document.onkeypress = function(event){
+            
+            //This figures out which key was pressed. 
+            var userGuess = event.key;
+
+            //Going from here I'll try to check everything written in the console. EDIT:
+            console.log(computerGuess);
+            console.log(userGuess);
+            console.log(tries);
+            console.log(ties);
+            console.log(wins);
+            console.log(losses);
+            console.log("------------------------------------")
+
+            //This will check user input... I was too lazy to think of a better solution, and my fingers suffered for my bad decision. 
+            if (userGuess !== 'a' || userGuess !== 'b' || userGuess !== 'c' || userGuess !== 'd' || userGuess !== 'e' || userGuess !== 'f', userGuess !== 'g', userGuess !== 'h', userGuess !== 'i', userGuess !== 'j', userGuess !== 'k', userGuess !== 'l', userGuess !== 'm', userGuess !== 'n', userGuess !== 'o', userGuess !== 'p', userGuess !== 'q', userGuess !== 'r', userGuess !== 's', userGuess !== 't', userGuess !== 'u', userGuess !== 'v', userGuess !== 'w', userGuess !== 'x', userGuess !== 'y', userGuess !== 'z'){
+                return;
+            }
+            //This is what happens when the user inputs an acceptable keyword
+            else{
+                if (computerGuess === userGuess){
+                    //If the user correctly guesses the computer's letter, they win. 
+                    wins += 1;
+                    return;
+                }
+                else if(computerGuess !== userGuess){
+                    if(tries !== 0){
+                        //If the user didn't correctly input the correct character and still have tries reminaing, they can go again, but the number of tries will be reduced by one.  
+                        tries -= 1;
+                    }
+                    else{
+                        //If the user doesn't correctly guess the letter and have no more tries, they lose. 
+                        losses += 1;
+                        alert("You have lost!")
+                        new computerGuess;
+                    }
+                }
+                
+
+                }
+                var Choice = "<p>You chose: " + userGuess + "</p>"
+                var Wins = "<p>wins: " + wins + "</p>"
+                var Losses = "<p>losses: " + losses + "</p>"
+                var Ties = "<p>ties: " + ties + "</p>";
+            
+                document.getElementById("cholce").innerHTML = Choice;
+                document.getElementById("wlns").innerHTML = Wins;
+                document.getElementById("lossesl").innerHTML = Losses;
+                document.getElementById("tles").innerHTML = Ties;
+
+            }
+
+    </script>
+    
+</body>
+</html>
